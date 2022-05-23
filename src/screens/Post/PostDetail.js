@@ -5,9 +5,7 @@ export default function PostDetail({route}) {
   const userId = route.params.id;
   const [user, setUser] = useState({});
 
-  //JSON syntax.
-  // {} -> dictionary
-  // [] -> array
+ 
 
   useEffect(() => {
     fetchUserList();
@@ -22,8 +20,8 @@ export default function PostDetail({route}) {
   };
 
   return (
-    // <View style={styles.container}>
-    <View>
+    
+    <View style>{{flex:1}}
       <Text style={{fontSize: 30}}>{userId}</Text>
       <Text style={{fontSize: 30}}>{user.id}</Text>
       <Text style={{fontSize: 30}}>{user.title}</Text>
