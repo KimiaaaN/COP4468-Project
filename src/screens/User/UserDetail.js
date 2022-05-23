@@ -1,9 +1,9 @@
-import {View, Text} from 'react-native';
-import React from 'react';
+import {View, Text, FlatList, Button} from 'react-native';
+import React, {useState, useEffect} from 'react';
 
 export default function UserDetail({route}) {
   const userId = route.params.id;
-  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     fetchUserList();
@@ -13,13 +13,19 @@ export default function UserDetail({route}) {
     fetch('https://jsonplaceholder.typicode.com/users/' + userId)
       .then(res => res.json())
       .then(data => {
-        setUsers(data);
+        setUser(data);
       });
   };
 
   return (
     <View>
-      <Text style={{fontSize: 20}}>{userId}</Text>
+      <Text style={{fontSize: 30}}>{userId}</Text>
+      <Text style={{fontSize: 30}}>{user.username}</Text>
+      <Text style={{fontSize: 30}}>{user.phone}</Text>
+      <Text style={{fontSize: 30}}>{user.email}</Text>
+      <Text style={{fontSize: 30}}>{user.website}</Text>
     </View>
   );
 }
+
+//flexbox
