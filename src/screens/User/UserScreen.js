@@ -14,6 +14,9 @@ export default function UserScreen({navigation}) {
       .then(res => res.json())
       .then(data => {
         setUsers(data);
+      })
+      .catch((error) => {
+        console.log(error)
       });
   };
 

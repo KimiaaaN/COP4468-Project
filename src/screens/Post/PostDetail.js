@@ -1,31 +1,71 @@
-import {View, Text, FlatList, Button} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import React, {useState, useEffect} from 'react';
 
-export default function PostDetail({route}) {
-  const userId = route.params.id;
-  const [user, setUser] = useState({});
+
+export default function PostDetail({ route}) {
+  const postId = route.params.id;
+  const [post, setpost] = useState({});
+  
 
  
 
   useEffect(() => {
-    fetchUserList();
+    fetchPostList();
+   
   }, []);
 
-  const fetchUserList = () => {
-    fetch('https://jsonplaceholder.typicode.com/posts/' + userId)
+  const fetchPostList = () => {
+    fetch('https://jsonplaceholder.typicode.com/posts/'+postId)
       .then(res => res.json())
       .then(data => {
-        setUser(data);
+        setpost(data);
+      })
+      .catch((error) => {
+        console.log(error)
       });
   };
-
+ 
   return (
     
-    <View style>{{flex:1}}
-      <Text style={{fontSize: 30}}>{userId}</Text>
-      <Text style={{fontSize: 30}}>{user.id}</Text>
-      <Text style={{fontSize: 30}}>{user.title}</Text>
-      <Text style={{fontSize: 30}}>{user.body}</Text>
+    <View>
+      <Text style={{fontSize: 30}}>{postId}</Text>
+      <Text style={{fontSize: 30}}>{post.title}</Text>
+      <Text style={{fontSize: 30}}>{post.body}</Text>
     </View>
   );
+  
+  // return (
+
+  //   <View>
+  //     <FlatList>
+
+  //       showsVerticalScrollIndicator={false}
+  //           contentContainerStyle={{
+  //             paddingBottom: 180,
+  //             marginBottom: 100,
+  //           }}
+  //           {/* data={post}
+  //           keyExtractor={(item) => item.id.toString()}
+  //           renderItem={({ item }) => ( */}
+  //             <View
+  //               style={{
+  //                 borderWidth: 1,
+  //                 borderColor: "#000",
+  //                 padding: 10,
+  //                 marginBottom: 10,
+  //                 borderRadius: 10,
+  //               }}
+  //             >
+  //               <Text style={{fontSize:30}}>{post.Id}</Text>
+  //               <Text style={{fontSize:30}}>{post.title}</Text> 
+  //               {/* <Text >{Comment.body}</Text> */}
+  //             </View>
+            
+  
+  //     </FlatList>
+        
+    
+       
+  //   </View>
+  // );
 }

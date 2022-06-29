@@ -13,6 +13,11 @@
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/stack": "^6.2.1",
+    "@types/react": "^18.0.14",
+    "@types/react-native": "^0.69.1",
+    "denodeify": "^1.2.1",
+    "expo-web-browser": "^10.2.1",
+    "js-yaml": "^4.1.0",
     "react": "17.0.2",
     "react-native": "0.68.2",
     "react-native-gesture-handler": "^2.4.2",
@@ -21,12 +26,15 @@
     "react-navigation": "^4.4.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.0",
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
     "@babel/runtime": "^7.18.0",
     "@react-native-community/eslint-config": "^3.0.2",
     "babel-jest": "^28.1.0",
     "eslint": "^8.16.0",
     "jest": "^28.1.0",
+    "jetifier": "^2.0.0",
+    "metro": "^0.71.1",
     "metro-react-native-babel-preset": "^0.71.0",
     "react-test-renderer": "17.0.2"
   },

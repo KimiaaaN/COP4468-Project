@@ -16,12 +16,16 @@ export default function UserDetail({route}) {
       .then(res => res.json())
       .then(data => {
         setUser(data);
+      })
+      .catch((error) => {
+        console.log(error)
       });
   };
 
   return (
+    // style>{{flex:1}}
     
-    <View style>{{flex:1}}
+    <View>
       <Text style={{fontSize:30}}>{userId}</Text>
       <Text style={{fontSize:30}}>{user.username}</Text>
       <Text style={{fontSize: 30}}>{user.phone}</Text>
