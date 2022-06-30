@@ -9,20 +9,7 @@ import styles from '../../Style/style';
 export default function UserScreen({navigation}) {
   const [users, setUsers] = useState([]);
 
-  // useEffect(() => {
-  //   fetchUserList();
-  // }, []);
-
-  // const fetchUserList = () => {
-  //   fetch('https://jsonplaceholder.typicode.com/users')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setUsers(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //     });
-  // };
+ 
   useEffect(() => {
     (async () => {
       try {
