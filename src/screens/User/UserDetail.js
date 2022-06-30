@@ -9,20 +9,7 @@ export default function UserDetail({route}) {
   const userId = route.params.id;
   const [user, setUser] = useState([]);
 
-  // useEffect(() => {
-  //   fetchUserList();
-  // }, []);
-
-  // const fetchUserList = () => {
-  //   fetch('https://jsonplaceholder.typicode.com/users/' + userId)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setUser(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //     });
-  // };
+ 
   useEffect(() => {
     (async () => {
       try {
