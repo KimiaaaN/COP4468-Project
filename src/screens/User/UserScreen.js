@@ -1,6 +1,9 @@
-import {View, Text, FlatList, Button} from 'react-native';
+import {View, Text, FlatList, Button, StyleSheet, ScrollView} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import UserDetail from './UserDetail';
+import styles from '../../Style/style';
+
+
 
 export default function UserScreen({navigation}) {
   const [users, setUsers] = useState([]);
@@ -20,19 +23,42 @@ export default function UserScreen({navigation}) {
       });
   };
 
+
+
+
+
+
   return (
     <View>
-      <FlatList
+      
+      
+        <FlatList
+
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingBottom: 180,
+            marginBottom: 100}}
+
+          
+
         data={users}
         renderItem={({item}) => {
+
           return (
-            <Button
+            <Button 
               title={item.name + ', ' + item.username + item.id}
               onPress={() => navigation.navigate('UserDetail', {id: item.id})}
             />
+          
           );
         }}
-      />
+        
+        />
+      
     </View>
+
+
   );
+
+  
 }

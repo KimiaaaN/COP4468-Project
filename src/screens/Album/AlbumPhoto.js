@@ -1,11 +1,12 @@
-import {View, Text, FlatList,Image} from 'react-native';
+import {View, Text, FlatList,Image,ScrollView} from 'react-native';
 import React, {useState, useEffect} from 'react';
+import styles from '../../Style/style';
+
 
 export default function AlbumPhoto({navigation}) {
  
   const [Photo, setPhoto] = useState({});
 
- 
 
   useEffect(() => {
     fetchAlbumPhotoList();
@@ -22,10 +23,12 @@ export default function AlbumPhoto({navigation}) {
       });
   };
 
+ 
   return (
-    // style>{{flex:1}}
+   
     
     <View>
+      <ScrollView>
       <FlatList
       data={Photo}
       renderItem={({item}) => {
@@ -34,17 +37,14 @@ export default function AlbumPhoto({navigation}) {
           
           <Image
             source={{uri:item.thumbnailUrl }}
-            style={{
-              width: 160,
-              height: 160,
-             }}
+            style={styles.img}
             />
           
         );
       }
     }
     />
+    </ScrollView>
     </View>
   );
 }
-{/* // <Text style={{fontSize:30}}>{albumId}</Text> */}

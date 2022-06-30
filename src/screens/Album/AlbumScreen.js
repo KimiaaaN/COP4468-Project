@@ -1,9 +1,11 @@
-import {View, Text, FlatList, Button} from 'react-native';
+import {View, Text, FlatList, Button,ScrollView} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import AlbumPhoto from './AlbumPhoto';
 
+
 export default function AlbumScreen({navigation}) {
   const [Albums, setAlbums] = useState([]);
+
 
   useEffect(() => {
     fetchAlbumList();
@@ -19,9 +21,11 @@ export default function AlbumScreen({navigation}) {
         console.log(error)
       });
   };
+  
 
   return (
     <View>
+      <ScrollView>
       <FlatList
         data={Albums}
         renderItem={({item}) => {
@@ -33,6 +37,7 @@ export default function AlbumScreen({navigation}) {
           );
         }}
       />
+      </ScrollView>
     </View>
   );
 }
