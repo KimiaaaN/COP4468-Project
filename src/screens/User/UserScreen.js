@@ -1,5 +1,6 @@
 import {View, Text, FlatList, Button, StyleSheet, ScrollView} from 'react-native';
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import UserDetail from './UserDetail';
 import styles from '../../Style/style';
 
@@ -8,21 +9,40 @@ import styles from '../../Style/style';
 export default function UserScreen({navigation}) {
   const [users, setUsers] = useState([]);
 
+  // useEffect(() => {
+  //   fetchUserList();
+  // }, []);
+
+  // const fetchUserList = () => {
+  //   fetch('https://jsonplaceholder.typicode.com/users')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setUsers(data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     });
+  // };
   useEffect(() => {
-    fetchUserList();
+    (async () => {
+      try {
+        
+        const response = await axios.get(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        const data = await response.data;
+        setUsers(data);
+        setUsersState(data);
+        
+      } catch (error) {
+        
+
+        console.log(error);
+      }
+    })();
   }, []);
 
-  const fetchUserList = () => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(res => res.json())
-      .then(data => {
-        setUsers(data);
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-  };
-
+ 
 
 
 

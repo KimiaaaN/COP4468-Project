@@ -1,5 +1,6 @@
 import {View, Text, FlatList, Button,ScrollView} from 'react-native';
 import React, {useState, useEffect} from 'react';
+import axios from "axios";
 import styles from '../../Style/style';
 
 
@@ -8,20 +9,37 @@ export default function UserDetail({route}) {
   const userId = route.params.id;
   const [user, setUser] = useState([]);
 
-  useEffect(() => {
-    fetchUserList();
-  }, []);
+  // useEffect(() => {
+  //   fetchUserList();
+  // }, []);
 
-  const fetchUserList = () => {
-    fetch('https://jsonplaceholder.typicode.com/users/' + userId)
-      .then(res => res.json())
-      .then(data => {
+  // const fetchUserList = () => {
+  //   fetch('https://jsonplaceholder.typicode.com/users/' + userId)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setUser(data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     });
+  // };
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios(
+          'https://jsonplaceholder.typicode.com/users/' + userId
+        );
+        const data = await response.data;
         setUser(data);
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-  };
+        setUserState(data);
+
+        } catch(error)  {
+          console.log(error)
+        }
+      })();
+    }, []);
+
+
 
   return (
 

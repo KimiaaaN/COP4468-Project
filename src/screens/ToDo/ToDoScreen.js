@@ -1,26 +1,29 @@
 import {View, Text, FlatList,ScrollView} from 'react-native';
 import React, {useState, useEffect} from 'react';
+import axios from "axios";
 import styles from '../../Style/style';
 
 
 export default function ToDoScreen({navigation}) {
   const [ToDo, setToDo] = useState([]);
 
-  useEffect(() => {
-    fetchToDoList();
-  }, []);
 
-  const fetchToDoList = () => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
-      .then(res => res.json())
-      .then(data => {
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios(
+          'https://jsonplaceholder.typicode.com/todos'
+        );
+        const data = await response.data;
         setToDo(data);
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-  };
-  
+        setToDoState(data);
+
+        } catch(error)  {
+          console.log(error)
+        }
+      })();
+    }, []);
+
   return(
 
     

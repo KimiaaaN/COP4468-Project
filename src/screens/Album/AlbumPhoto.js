@@ -1,5 +1,6 @@
 import {View, Text, FlatList,Image,ScrollView} from 'react-native';
 import React, {useState, useEffect} from 'react';
+import axios from "axios";
 import styles from '../../Style/style';
 
 
@@ -7,21 +8,25 @@ export default function AlbumPhoto({navigation}) {
  
   const [Photo, setPhoto] = useState({});
 
-
   useEffect(() => {
-    fetchAlbumPhotoList();
-  }, []);
-
-  const fetchAlbumPhotoList = () => {
-    fetch('https://jsonplaceholder.typicode.com/photos')
-      .then(res => res.json())
-      .then(data => {
+    (async () => {
+      try {
+        const response = await axios(
+          "https://jsonplaceholder.typicode.com/photos"
+        );
+        const data = await response.data;
         setPhoto(data);
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-  };
+        setPhotoState(data);
+
+        } catch(error)  {
+          console.log(error)
+        }
+      })();
+    }, []);
+
+
+
+  
 
  
   return (

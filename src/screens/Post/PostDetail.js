@@ -37,6 +37,9 @@ export default function PostDetail({ route }) {
       });
   };
 
+  
+ 
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -48,11 +51,12 @@ export default function PostDetail({ route }) {
           <Text style={styles.baseText}>Body:</Text>
           <Text style={styles.innerText}>{post.body}</Text>
           <Text style={styles.header}>Comments:</Text>
+
           <FlatList
           
-            data={comment}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
+          data={comment}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
               <View
                 style={styles.container}
               >

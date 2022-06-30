@@ -1,5 +1,6 @@
 import {View, Text, FlatList, Button,ScrollView} from 'react-native';
 import React, {useState, useEffect} from 'react';
+import axios from "axios";
 import PostDetail from './PostDetail';
 import styles from '../../Style/style';
 
@@ -7,25 +8,26 @@ import styles from '../../Style/style';
 
 export default function PostScreen({navigation}) {
   const [post, setpost] = useState([]);
-  
 
   useEffect(() => {
-    fetchPostList();
-  }, []);
-
-  const fetchPostList = () => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(res => res.json())
-      .then(data => {
-        
+    (async () => {
+      try {
+        const response = await axios(
+          'https://jsonplaceholder.typicode.com/posts'
+        );
+        const data = await response.data;
         setpost(data);
-       
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-  };
+        setpostState(data);
+
+        } catch(error)  {
+          console.log(error)
+        }
+      })();
+    }, []);
+
   
+
+
 
 
   return (

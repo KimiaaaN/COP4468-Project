@@ -1,26 +1,30 @@
 import {View, Text, FlatList, Button,ScrollView} from 'react-native';
 import React, {useState, useEffect} from 'react';
+import axios from "axios";
 import AlbumPhoto from './AlbumPhoto';
 
 
 export default function AlbumScreen({navigation}) {
   const [Albums, setAlbums] = useState([]);
 
-
   useEffect(() => {
-    fetchAlbumList();
-  }, []);
-
-  const fetchAlbumList = () => {
-    fetch('https://jsonplaceholder.typicode.com/albums')
-      .then(res => res.json())
-      .then(data => {
+    (async () => {
+      try {
+        const response = await axios(
+          'https://jsonplaceholder.typicode.com/albums'
+        );
+        const data = await response.data;
         setAlbums(data);
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-  };
+        setAlbumsState(data);
+
+        } catch(error)  {
+          console.log(error)
+        }
+      })();
+    }, []);
+
+
+  
   
 
   return (
